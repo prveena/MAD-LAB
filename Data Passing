@@ -1,39 +1,114 @@
 XML
 
-
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context=".MainActivity" >
+    tools:context=".MainActivity">
 
     <EditText
-        android:id="@+id/et1"
-        android:layout_width="match_parent"
-        android:layout_height="82dp"
+        android:id="@+id/num1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="43dp"
+        android:layout_marginLeft="43dp"
+        android:layout_marginTop="20dp"
+        android:layout_marginEnd="194dp"
+        android:layout_marginRight="194dp"
+        android:layout_marginBottom="678dp"
         android:ems="10"
-        android:hint="Number1"
-        android:inputType="number" />
+        android:hint="Number 1"
+        android:inputType="textPersonName"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.692"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.333" />
 
     <EditText
-        android:id="@+id/et2"
-        android:layout_width="match_parent"
-        android:layout_height="70dp"
+        android:id="@+id/num2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="17dp"
+        android:layout_marginLeft="43dp"
+        android:layout_marginTop="48dp"
+        android:layout_marginEnd="181dp"
+        android:layout_marginRight="181dp"
+        android:layout_marginBottom="585dp"
         android:ems="10"
-        android:hint="Number2"
-        android:inputType="number" />
+        android:hint="Number 2"
+        android:inputType="textPersonName"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/num1" />
+
+
 
     <Button
         android:id="@+id/add"
-        android:layout_width="match_parent"
-        android:layout_height="89dp"
-        android:text="Add" />
-</LinearLayout>
+        android:layout_width="201dp"
+        android:layout_height="70dp"
+        android:layout_marginStart="43dp"
+        android:layout_marginLeft="43dp"
+        android:layout_marginTop="66dp"
+        android:layout_marginEnd="256dp"
+        android:layout_marginRight="256dp"
+        android:layout_marginBottom="339dp"
+        android:text="ADD"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.07"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/num2"
+        app:layout_constraintVertical_bias="0.636" />
+</androidx.constraintlayout.widget.ConstraintLayout>
 
-mainactivity2.xml
+
+
+java
+
+package com.example.intent_datapassing;
+
+import androidx.appcompat.app.AppCompatActivity;
+
+import android.content.Intent;
+import android.os.Bundle;
+import android.view.View;
+import android.widget.Button;
+import android.widget.EditText;
+import android.widget.TextView;
+
+public class MainActivity extends AppCompatActivity {
+    Button add;
+    EditText num1,num2;
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_main);
+        add=findViewById(R.id.add);
+        num1=findViewById(R.id.num1);
+        num2=findViewById(R.id.num2);
+        add.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+            Integer a,b,result;
+            a=Integer.parseInt(num1.getText().toString());
+            b=Integer.parseInt(num2.getText().toString());
+            result=a+b;
+                Intent in=new Intent(MainActivity.this,Main2Activity.class);
+                in.putExtra("result",result);
+                startActivity(in);
+            }
+        });
+    }
+}
+
 
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
@@ -44,59 +119,26 @@ mainactivity2.xml
     tools:context=".Main2Activity">
 
     <TextView
-        android:id="@+id/res"
-        android:layout_width="343dp"
-        android:layout_height="65dp"
-        android:text="RESULT"
-        android:textSize="50dp"
+        android:id="@+id/textView"
+        android:layout_width="267dp"
+        android:layout_height="68dp"
+        android:layout_marginStart="52dp"
+        android:layout_marginLeft="52dp"
+        android:layout_marginTop="70dp"
+        android:layout_marginEnd="301dp"
+        android:layout_marginRight="301dp"
+        android:layout_marginBottom="642dp"
+        android:text="Result"
+        android:textSize="30dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.306" />
 </androidx.constraintlayout.widget.ConstraintLayout>
 
-
-JAVA CODE
-package com.example.intentmsgpass;
-
-import androidx.appcompat.app.AppCompatActivity;
-
-import android.content.Intent;
-import android.os.Bundle;
-import android.view.View;
-import android.widget.Button;
-import android.widget.EditText;
-
-public class MainActivity extends AppCompatActivity {
-    Button add;
-    EditText n1,n2;
-
-    @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
-        n1=findViewById(R.id.et1);
-        n2=findViewById(R.id.et2);
-        add=findViewById(R.id.add);
-        add.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Integer num1,num2,result;
-                num1=Integer.parseInt(n1.getText().toString());
-                num2=Integer.parseInt(n2.getText().toString());
-                result=num1+num2;
-                Intent i=new Intent(MainActivity.this,Main2Activity.class);
-                i.putExtra("result",result);
-                startActivity(i);
-
-            }
-        });
-    }
-}
-
-mainActivity2.java
-
-   package com.example.intentmsgpass;
+package com.example.intent_datapassing;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -105,17 +147,40 @@ import android.os.Bundle;
 import android.widget.TextView;
 import android.widget.Toast;
 
-   public class Main2Activity extends AppCompatActivity {
-    TextView tv;
-    Integer r;
+public class Main2Activity extends AppCompatActivity {
+    TextView t;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main2);
-        tv=findViewById(R.id.res);
-
-        r=getIntent().getIntExtra("result",0);
-        tv.setText("answer is:"+r);
-
+        t=findViewById(R.id.textView);
+        int res=getIntent().getIntExtra("result", 0);
+        t.setText("Answer = "+(Integer.toString(res)));
     }
 }
+
+
+
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.example.intent_datapassing">
+
+    <application
+        android:allowBackup="true"
+        android:icon="@mipmap/ic_launcher"
+        android:label="@string/app_name"
+        android:roundIcon="@mipmap/ic_launcher_round"
+        android:supportsRtl="true"
+        android:theme="@style/AppTheme">
+        <activity android:name=".Main2Activity"></activity>
+        <activity android:name=".MainActivity">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+    </application>
+
+</manifest>
