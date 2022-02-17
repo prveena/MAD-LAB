@@ -1,0 +1,85 @@
+XML CODE----->
+
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".MainActivity">
+
+    <TextView
+        android:id="@+id/tv"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Hello World!"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintHorizontal_bias="0.407"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.213" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
+
+
+
+JAVA CODE------>
+
+package com.example.optionmenu;
+
+import androidx.appcompat.app.AppCompatActivity;
+
+import android.os.Bundle;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
+import android.view.ViewDebug;
+import android.widget.Toast;
+
+public class MainActivity extends AppCompatActivity {
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_main);
+    }
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu){
+    MenuInflater inflater=getMenuInflater();
+    inflater.inflate(R.menu.main_menu,menu);
+    return true;
+    }
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item){
+        switch (item.getItemId()){
+            case R.id.item1:
+                Toast.makeText(this,"Item 1 selected",Toast.LENGTH_SHORT).show();
+            case R.id.item2:
+                Toast.makeText(this,"item 2 selected",Toast.LENGTH_SHORT).show();
+             return  true;
+             default:
+                 return super.onOptionsItemSelected(item);
+        }
+    }
+
+}
+
+
+
+
+MAIN_MENU.XML------->
+
+
+
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+ <item
+     android:id="@+id/item1"
+     android:title="item1"/>
+    <item
+        android:id="@+id/item2"
+        android:title="item2"/>
+
+
+</menu>
